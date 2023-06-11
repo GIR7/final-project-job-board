@@ -24,6 +24,33 @@ async function DoggrRoutes(app: FastifyInstance, _options = {}) {
 		return "hello";
 	});
 	
+	//Create/Check a user and return its user (id).
+	app.post<{ Body: {name:string,email:string } }>("/users", async (req, reply) => {
+		const { name, email } = req.body;
+		try {
+			// Check if the user already exists in the database based on the email
+			let user = await req.em.findOne(User, { email });
+			console.log("user line 34",user)
+			if (!user) {
+				// If the user doesn't exist, create a new user record
+				const newUser = await req.em.create(User, {
+					name,
+					email
+				});
+				console.log("create a new user",newUser)
+				await req.em.flush();
+				return reply.send(newUser);
+			}else {
+				// If the user exists, update the user's name OR do nothing...
+				user.name = name;
+				return reply.send(user);
+			}
+			
+		} catch (err) {
+			return reply.status(500).send({ message: err.message });
+		}
+	});
+	
 	// this routes take care of by the filter job routes
 	// app.get("/alljobs", async (request: FastifyRequest, _reply: FastifyReply) => {
 	// 	return request.em.find(Jobs, {});
