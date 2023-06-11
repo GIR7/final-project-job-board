@@ -1,6 +1,12 @@
 lockfileVersion: '6.0'
 
 dependencies:
+  '@azure/msal-browser':
+    specifier: ^2.37.1
+    version: 2.37.1
+  '@azure/msal-react':
+    specifier: ^1.5.8
+    version: 1.5.8(@azure/msal-browser@2.37.1)(react@18.2.0)
   axios:
     specifier: ^1.4.0
     version: 1.4.0
@@ -93,6 +99,29 @@ packages:
   /@adobe/css-tools@4.2.0:
     resolution: {integrity: sha512-E09FiIft46CmH5Qnjb0wsW54/YQd69LsxeKUOWawmws1XWvyFGURnAChH0mlr7YPFR1ofwvUQfcL0J3lMxXqPA==}
     dev: true
+
+  /@azure/msal-browser@2.37.1:
+    resolution: {integrity: sha512-EoKQISEpIY39Ru1OpWkeFZBcwp6Y0bG81bVmdyy4QJebPPDdVzfm62PSU0XFIRc3bqjZ4PBKBLMYLuo9NZYAow==}
+    engines: {node: '>=0.8.0'}
+    dependencies:
+      '@azure/msal-common': 13.1.0
+    dev: false
+
+  /@azure/msal-common@13.1.0:
+    resolution: {integrity: sha512-wj+ULrRB0HTuMmtrMjg8j3guCx32GE2BCPbsMCZkHgL1BZetC3o/Su5UJEQMX1HNc9CrIaQNx5WaKWHygYDe0g==}
+    engines: {node: '>=0.8.0'}
+    dev: false
+
+  /@azure/msal-react@1.5.8(@azure/msal-browser@2.37.1)(react@18.2.0):
+    resolution: {integrity: sha512-6lkNjF7WHOFUOKInsHUT5RQGEK9s9KtxSKZxhQPpvYrQrpp6/W3CMp+TkxgeFylQZk3iwUO79yf5cw/Z71I3vQ==}
+    engines: {node: '>=10'}
+    peerDependencies:
+      '@azure/msal-browser': ^2.37.1
+      react: ^16.8.0 || ^17 || ^18
+    dependencies:
+      '@azure/msal-browser': 2.37.1
+      react: 18.2.0
+    dev: false
 
   /@babel/code-frame@7.21.4:
     resolution: {integrity: sha512-LYvhNKfwWSPpocw8GI7gpK2nq3HSDuEPC/uSYaALSJu9xjsalaaYFOq0Pwt5KmVqwEbZlDu81aLXwBOmD/Fv9g==}
