@@ -1,14 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import axios from 'axios';
 import search from './Search.tsx';
 import { useNavigate, Link } from 'react-router-dom';
 import JobDetail from './Jobdetail.tsx';
+import { FilterContext } from '../Services/FilterContext.tsx'
 
 const JobList = () => {
 	const [jobs, setJobs] = useState([]);
-	const [typeFilter, setTypeFilter] = useState('');
-	const [statusFilter, setStatusFilter] = useState('');
-	
+	// const [typeFilter, setTypeFilter] = useState('');
+	// const [statusFilter, setStatusFilter] = useState('');
+	const { typeFilter, statusFilter, updateType, updateStaus } = useContext(FilterContext);
 	
 	//fetches joblist when first time rendered
 	// filters the job list automatically when the dropdown values change
@@ -59,8 +60,10 @@ const JobList = () => {
 	
 	
 	const clearFilters = () => {
-		setTypeFilter('');
-		setStatusFilter('');
+		// setTypeFilter('');
+		// setStatusFilter('');
+		updateType("");
+		updateStaus("");
 		filterJobs();
 	};
 	
@@ -74,7 +77,7 @@ const JobList = () => {
 				<select
 					id="typeFilter"
 					value={typeFilter}
-					onChange={(e) => setTypeFilter(e.target.value)}
+					onChange={(e) => updateType(e.target.value)}
 				>
 					<option value="">All</option>
 					<option value="Remote">Remote</option>
@@ -87,7 +90,7 @@ const JobList = () => {
 				<select
 					id="statusFilter"
 					value={statusFilter}
-					onChange={(e) => setStatusFilter(e.target.value)}
+					onChange={(e) => updateStaus(e.target.value)}
 				>
 					<option value="">All</option>
 					<option value="CPT">CPT</option>
