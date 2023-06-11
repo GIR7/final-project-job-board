@@ -19,14 +19,6 @@ const JobList = () => {
 		filterJobs();
 	}, [typeFilter, statusFilter]);
 	
-	// const fetchJobs = async () => {
-	// 	try {
-	// 		const response = await axios.get('http://[::1]:8080/alljobs');
-	// 		setJobs(response.data);
-	// 	} catch (error) {
-	// 		console.error('Error fetching jobs:', error);
-	// 	}
-	// };
 	
 	const filterJobs = async () => {
 		try {

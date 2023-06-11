@@ -1,30 +1,37 @@
+import {Home} from "@/components/Home.tsx";
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import {BrowserRouter, Routes, Route,} from 'react-router-dom';
 import JobList from './components/Joblist.tsx';
 import JobDetail from './components/Jobdetail.tsx';
 import SavedJobs from './components/Savedjobs.tsx';
 import { FilterProvider } from './Services/FilterContext.tsx'
-import {MsalProvider} from "@azure/msal-react";
+import {MsalProvider,useIsAuthenticated } from "@azure/msal-react";
 import NavBar from './components/NavBar.tsx'
 
-const App = ({msalinstance}) => {
+const JobRoute = ()=>{
+	const isAuth  = useIsAuthenticated();
 	return (
-		<Router>
+		<Routes>
+			{isAuth ? <Route path='/' element={<JobList/>} />: <Route path='/' element={<Home />} />}
+			{isAuth ? <Route path='/savedjobs' element={<SavedJobs />} /> :<Route path='/savedjobs'  element={<Home />} />}
+			{isAuth ? <Route path='/jobs/:jobId' element={<JobDetail />} /> : <Route path='/jobs/:jobId' element={<Home />} />}
+		</Routes>
+	)
+}
+
+const App = ({msalinstance}) =>{
+	return (
+		<BrowserRouter>
 			<MsalProvider instance={msalinstance}>
-				<NavBar/>
-			<FilterProvider>
-			<Routes>
 				
-				
-				<Route  path="/" element={<JobList />} />
-				<Route path="/savedjobs" element={<SavedJobs />} />
-			
-				<Route path="/jobs/:jobId" element={<JobDetail />} />
-			</Routes>
-		</FilterProvider>
-</MsalProvider>
-		</Router>
+				<FilterProvider>
+						<NavBar/>
+					<JobRoute/>
+				</FilterProvider>
+			</MsalProvider>
+		</BrowserRouter>
 	);
 };
+
 
 export default App;
