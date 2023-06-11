@@ -8,7 +8,6 @@ import { Savedjob } from "./db/entities/Savedjob.js";
 import { User } from "./db/entities/User.js";
 import { Createsavedjob } from "./types.js";
 
-// const adminPassword = process.env.password;
 
 /** This function creates all backend routes for the site
  *
@@ -111,10 +110,25 @@ async function DoggrRoutes(app: FastifyInstance, _options = {}) {
 		}
 	});
 	
-	//One job detail page based on the job id
-	app.search<{ Body: { jobid: number } }>
-	("/jobs/id", async (req, res) => {
-		const {jobid} = await req.body;
+	// //One job detail page based on the job id
+	// app.search<{ Body: { jobid: number } }>
+	// ("/jobs/id", async (req, res) => {
+	// 	const {jobid} = await req.body;
+	//
+	// 	try {
+	// 		const thejob = await req.em.find(Jobs, {id: jobid})
+	// 		res.status(200).send(thejob);
+	// 	} catch (e) {
+	//
+	// 		console.error(e);
+	// 		res.status(500).send(e);
+	// 	}
+	// })
+	
+	//Refactor above, get request to get the job detail based on the params jobid
+	app.get<{ Params: { jobid: number } }>
+	("/jobs/:jobid", async (req, res) => {
+		const {jobid} = await req.params;
 		
 		try {
 			const thejob = await req.em.find(Jobs, {id: jobid})
