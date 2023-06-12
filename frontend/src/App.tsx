@@ -8,7 +8,7 @@ import { FilterProvider } from './Services/FilterContext.tsx'
 import { UserProvider } from './Services/UserIdContext.tsx'
 import {MsalProvider,useIsAuthenticated } from "@azure/msal-react";
 import NavBar from './components/NavBar.tsx'
-
+import '../tailwind.css';
 
 const JobRoute = ()=>{
 	const isAuth  = useIsAuthenticated();

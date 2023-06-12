@@ -16,8 +16,15 @@ export const SignOutButton = () => {
 	
 	return (
 		<>
-			<div>Welcome, {name}</div>
-			<button onClick={handleSignOut} color="inherit">Sign out</button>
+			<div className="flex items-center justify-between">
+				<div className="mr-2 text-white">Welcome, {name}</div>
+			<button
+				className="block mx-auto px-4 py-2 bg-black-500 hover:bg-red-600 text-black font-semibold rounded-md"
+				onClick={handleSignOut}
+			>
+				Sign out
+			</button>
+			</div>
 		</>
-	)
+	);
 };

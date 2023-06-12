@@ -7,7 +7,8 @@ import {useIsAuthenticated} from "@azure/msal-react";
 const NavBar = () => {
 	const isAuth = useIsAuthenticated();
 	return (
-		<div >
+		<div className="flex items-center justify-between bg-gray-900 px-8 py-6">
+			<div className="text-white text-2xl">International CS Student Job Board</div>
 			{isAuth ? <SignOutButton /> : <SignInButton />}
 		</div>
 	);

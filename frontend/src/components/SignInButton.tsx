@@ -41,7 +41,10 @@ export const SignInButton = () => {
 	
 	return (
 		<>
-			<button onClick={handleSignIn}>Sign in</button>
+			<button
+				className="block mx-auto px-4 py-2 bg-blue-500 hover:bg-green-500 text-white font-semibold rounded-md"
+				onClick={handleSignIn}
+			>Sign in</button>
 		</>
 	);
 };
