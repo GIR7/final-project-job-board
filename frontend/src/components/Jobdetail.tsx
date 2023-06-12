@@ -32,10 +32,25 @@ const JobDetail = () => {
 		<div>
 			{job ? (
 				<div>
-					<h1>{job.title}</h1>
-					<p>{job.description}</p>
-					<button onClick={goBack}>Back</button>
-					
+					<h1 className="text-3xl font-bold mb-4">{job.title}</h1>
+					<div className="flex items-center bg-gray-200 rounded-lg p-2 mb-4">
+						<p className="mr-4 text-lg">
+							<span className="font-semibold">Type:</span> {job.type}
+						</p>
+						<p className="text-lg">
+							<span className="font-semibold">Status:</span> {job.status}
+						</p>
+					</div>
+					<div className="bg-gray-100 rounded-lg p-4 mb-4">
+						<h2 className="text-lg font-semibold mb-2">Description:</h2>
+						<p className="text-gray-700">{job.description}</p>
+					</div>
+					<button
+						className="px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded-md"
+						onClick={goBack}
+					>
+						Go Back
+					</button>
 				</div>
 			) : (
 				<p>Loading job details...</p>
