@@ -1,9 +1,9 @@
 import Fastify from "fastify";
 import { FastifySearchHttpMethodPlugin } from "./plugins/http_search.js";
 import { FastifyMikroOrmPlugin } from "./plugins/mikro.js";
-import DoggrRoutes from "./routes.js";
 import config from "./db/mikro-orm.config.js";
 import cors from '@fastify/cors'
+import JobsRoutes from "./routes/routes.js";
 
 const envToLogger = {
 	development: {
@@ -46,6 +46,6 @@ await app.register(cors, {
 await app.register(FastifyMikroOrmPlugin, config);
 await app.register(FastifySearchHttpMethodPlugin, {});
 
-await app.register(DoggrRoutes, {});
+await app.register(JobsRoutes, {});
 
 export default app;
