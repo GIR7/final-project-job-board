@@ -20,6 +20,7 @@ export const pca = new PublicClientApplication({
 pca.addEventCallback((event) => {
 	if (event.eventType === EventType.LOGIN_SUCCESS) {
 		console.log(event);
+		// @ts-ignore
 		pca.setActiveAccount(event.payload.account);
 	}
 });

@@ -4,12 +4,14 @@ import search from './Search.tsx';
 import { useNavigate, Link } from 'react-router-dom';
 import JobDetail from './Jobdetail.tsx';
 import { FilterContext } from '../Services/FilterContext.tsx'
+import { UserContext } from '../Services/UserIdContext.tsx';
 
 const JobList = () => {
 	const [jobs, setJobs] = useState([]);
 	// const [typeFilter, setTypeFilter] = useState('');
 	// const [statusFilter, setStatusFilter] = useState('');
 	const { typeFilter, statusFilter, updateType, updateStaus } = useContext(FilterContext);
+	const { userId } = useContext(UserContext);
 	
 	//fetches joblist when first time rendered
 	// filters the job list automatically when the dropdown values change
@@ -35,7 +37,7 @@ const JobList = () => {
 	
 	const saveJob = async (jobId) => {
 		try {
-			await axios.post('http://[::1]:8080/saved', { user_id: 2, job_id: jobId });
+			await axios.post('http://[::1]:8080/saved', { user_id: userId, job_id: jobId });
 		} catch (error) {
 			console.error('Error saving job:', error);
 		}
