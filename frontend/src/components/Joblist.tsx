@@ -9,7 +9,7 @@ const JobList = () => {
 	const [jobs, setJobs] = useState([]);
 	const {typeFilter, statusFilter, updateType, updateStaus} = useContext(FilterContext);
 	const {userId} = useContext(UserContext);
-	
+	const [savedJobs, setSavedJobs] = useState([]);
 	//fetches joblist when first time rendered
 	// filters the job list automatically when the dropdown values change
 	//without hit filter button
@@ -34,6 +34,7 @@ const JobList = () => {
 	const saveJob = async (jobId) => {
 		try {
 			await axios.post('http://[::1]:8080/saved', {user_id: userId, job_id: jobId});
+			setSavedJobs((prevSavedJobs) => [...prevSavedJobs, jobId]);
 		} catch (error) {
 			console.error('Error saving job:', error);
 		}
@@ -114,7 +115,7 @@ const JobList = () => {
 							className="px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded-md mr-2"
 							onClick={() => saveJob(job.id)}
 						>
-							Save
+							{savedJobs.includes(job.id) ? 'Saved' : 'Save'} {/* Change the button text to "Saved" if the job is already saved */}
 						</button>
 						<button
 							className="px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded-md"
