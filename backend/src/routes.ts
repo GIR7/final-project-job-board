@@ -100,6 +100,7 @@ async function DoggrRoutes(app: FastifyInstance, _options = {}) {
 			if (existingSave) {
 				// Remove the existing save entry to unstar the job
 				await req.em.removeAndFlush(existingSave);
+				return reply.send({message: "Unsave successfully."});
 			} else {
 				
 				//create a new relationship between them
@@ -112,7 +113,7 @@ async function DoggrRoutes(app: FastifyInstance, _options = {}) {
 				await req.em.flush();
 			}
 			// send the match back to the user
-			return reply.send({message: "Save status updated successfully."});
+			return reply.send({message: "Save successfully."});
 			
 		} catch (err) {
 			app.log.error(err);
