@@ -1,5 +1,5 @@
 import axios from 'axios';
-
+//corresponding search method with backend
 const search = async (url, data) => {
 	try {
 		const response = await axios.request({

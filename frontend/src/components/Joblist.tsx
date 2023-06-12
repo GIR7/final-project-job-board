@@ -2,14 +2,11 @@ import React, {useContext, useEffect, useState} from 'react';
 import axios from 'axios';
 import search from './Search.tsx';
 import { useNavigate, Link } from 'react-router-dom';
-import JobDetail from './Jobdetail.tsx';
 import { FilterContext } from '../Services/FilterContext.tsx'
 import { UserContext } from '../Services/UserIdContext.tsx';
 
 const JobList = () => {
 	const [jobs, setJobs] = useState([]);
-	// const [typeFilter, setTypeFilter] = useState('');
-	// const [statusFilter, setStatusFilter] = useState('');
 	const { typeFilter, statusFilter, updateType, updateStaus } = useContext(FilterContext);
 	const { userId } = useContext(UserContext);
 	
@@ -49,13 +46,11 @@ const JobList = () => {
 	};
 	
 	const viewJobDetail = (jobId) => {
-		navigate(`/jobdetail/${jobId}`); // Redirect the user to the JobDetail page with the job ID
+		navigate(`/jobs/${jobId}`); // Redirect the user to the JobDetail page with the job ID
 	};
 	
 	
 	const clearFilters = () => {
-		// setTypeFilter('');
-		// setStatusFilter('');
 		updateType("");
 		updateStaus("");
 		filterJobs();
@@ -100,7 +95,8 @@ const JobList = () => {
 						<h2>{job.title}</h2>
 						<p>{job.description}</p>
 						<button onClick={() => saveJob(job.id)}>Save</button>
-						<Link to={`/jobs/${job.id}`}>View Details</Link>
+						{/*<Link to={`/jobs/${job.id}`}>View Details</Link>*/}
+						<button onClick={() => viewJobDetail(job.id)}>View Job Detail</button>
 					</li>
 				))}
 			</ul>

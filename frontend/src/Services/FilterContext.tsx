@@ -1,12 +1,12 @@
 import React, { createContext, useState } from 'react';
 
-export const FilterContext = createContext();
+export const FilterContext = createContext(null);
 
 export const FilterProvider = ({ children }) => {
 	const [typeFilter, setTypeFilter] = useState('');
 	const [statusFilter, setStatusFilter] = useState('');
 	
-	const updateType = (type, status) => {
+	const updateType = (type) => {
 		setTypeFilter(type);
 		
 	};

@@ -22,6 +22,7 @@ const Savedjobs = () => {
 		fetchSavedJobs();
 	}, []);
 	
+	//to save/Unsave a job
 	const unsaveJob = async (jobId) => {
 		try {
 			await axios.post('http://[::1]:8080/saved', { user_id: userId, job_id: jobId });
@@ -33,7 +34,7 @@ const Savedjobs = () => {
 	
 	const navigate = useNavigate();
 	const goToJoblist = () => {
-		navigate('/'); // Redirect the user to the Savedjobs page using navigate
+		navigate('/'); // Redirect the user to the joblist page using navigate
 	};
 	
 	return (

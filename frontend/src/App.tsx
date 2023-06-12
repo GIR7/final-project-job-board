@@ -5,8 +5,10 @@ import JobList from './components/Joblist.tsx';
 import JobDetail from './components/Jobdetail.tsx';
 import SavedJobs from './components/Savedjobs.tsx';
 import { FilterProvider } from './Services/FilterContext.tsx'
+import { UserProvider } from './Services/UserIdContext.tsx'
 import {MsalProvider,useIsAuthenticated } from "@azure/msal-react";
 import NavBar from './components/NavBar.tsx'
+
 
 const JobRoute = ()=>{
 	const isAuth  = useIsAuthenticated();
@@ -23,11 +25,12 @@ const App = ({msalinstance}) =>{
 	return (
 		<BrowserRouter>
 			<MsalProvider instance={msalinstance}>
-				
+				<UserProvider>
 				<FilterProvider>
 						<NavBar/>
 					<JobRoute/>
 				</FilterProvider>
+				</UserProvider>
 			</MsalProvider>
 		</BrowserRouter>
 	);
