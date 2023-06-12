@@ -106,6 +106,8 @@ const JobList = () => {
 					Clear Filters
 				</button>
 			</div>
+			
+			<div className="job-list-container" style={{ height: "calc(100vh - 250px)", overflowY: "scroll" }}>
 			<ul>
 				{jobs?.map((job) => (
 					<li key={job.id} className="bg-gray-100 rounded-lg p-2 mb-4">
@@ -126,6 +128,7 @@ const JobList = () => {
 					</li>
 				))}
 			</ul>
+			</div>
 		</div>
 	);
 };

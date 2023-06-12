@@ -33,8 +33,22 @@ export class JobsSeeder extends Seeder {
 		 em.create(Jobs, {
 			
 			title:"SDE4",
-			type:"Hybird",
+			type:"Hybrid",
 			status:"CPT",
+			description:"This is just a test seeder for job4 SDE"
+		});
+		em.create(Jobs, {
+			
+			title:"SDE5",
+			type:"Hybrid",
+			status:"CPT",
+			description:"This is just a test seeder for job4 SDE"
+		});
+		em.create(Jobs, {
+			
+			title:"SDE6",
+			type:"Hybrid",
+			status:"OPT",
 			description:"This is just a test seeder for job4 SDE"
 		});
 	}

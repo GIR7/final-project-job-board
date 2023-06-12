@@ -6,8 +6,6 @@ import {Jobs} from "./db/entities/Jobs.js";
 
 import { Savedjob } from "./db/entities/Savedjob.js";
 import { User } from "./db/entities/User.js";
-import { Createsavedjob } from "./types.js";
-
 
 /** This function creates all backend routes for the site
  *
@@ -19,10 +17,6 @@ async function DoggrRoutes(app: FastifyInstance, _options = {}) {
 	if (!app) {
 		throw new Error("Fastify instance has no value during routes construction");
 	}
-	
-	app.get("/hello", async (_request: FastifyRequest, _reply: FastifyReply) => {
-		return "hello";
-	});
 	
 	//Create/Check a user and return its user (id).
 	app.post<{ Body: {name:string,email:string } }>("/users", async (req, reply) => {

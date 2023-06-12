@@ -41,10 +41,12 @@ export const SignInButton = () => {
 	
 	return (
 		<>
+			<div className="flex items-center justify-between">
 			<button
 				className="block mx-auto px-4 py-2 bg-blue-500 hover:bg-green-500 text-white font-semibold rounded-md"
 				onClick={handleSignIn}
 			>Sign in</button>
+			</div>
 		</>
 	);
 };
